@@ -169,8 +169,8 @@ class _ZegoBottomMenuBarState extends State<ZegoBottomMenuBar> {
 
   Widget generateDefaultButtonsByEnum(
       BuildContext context, ZegoMenuBarButtonName type) {
-    final buttonSize = Size(96.r, 96.r);
-    final iconSize = Size(56.r, 56.r);
+    final buttonSize = Size(56.r, 56.r);
+    final iconSize = Size(24.r, 24.r);
 
     switch (type) {
       case ZegoMenuBarButtonName.toggleMicrophoneButton:

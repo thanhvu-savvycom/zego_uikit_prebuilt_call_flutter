@@ -106,7 +106,7 @@ class ZegoCallingPageState extends State<ZegoCallingPage> {
                     .avatarBuilder,
               );
         view = ScreenUtilInit(
-          designSize: const Size(750, 1334),
+          designSize: const Size(375, 812),
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (context, child) {

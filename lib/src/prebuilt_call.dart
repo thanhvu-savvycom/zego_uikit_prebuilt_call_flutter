@@ -104,13 +104,14 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
     widget.config.onHangUpConfirmation ??= onHangUpConfirmation;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: WillPopScope(
         onWillPop: () async {
           return await widget.config.onHangUpConfirmation!(context) ?? false;
         },
         child: ScreenUtilInit(
-          designSize: const Size(750, 1334),
+          designSize: const Size(375, 812),
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (context, child) {
@@ -248,7 +249,7 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
       if (widget.config.layout is ZegoLayoutPictureInPictureConfig) {
         var layout = widget.config.layout as ZegoLayoutPictureInPictureConfig;
         layout.smallViewPosition = ZegoViewPosition.topRight;
-        layout.smallViewSize = Size(190.0.w, 338.0.h);
+        layout.smallViewSize = Size(100.0.w, 180.0.h);
         layout.smallViewMargin =
             EdgeInsets.only(left: 20.r, top: 50.r, right: 20.r, bottom: 30.r);
         widget.config.layout = layout;
@@ -285,7 +286,7 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
       top: 0,
       left: 0,
       child: SizedBox(
-        width: 750.w,
+        width: 400.w,
         height: height,
         child: container,
       ),
@@ -301,7 +302,7 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
       right: 0,
       top: 0,
       child: ZegoTopMenuBar(
-        buttonSize: Size(96.r, 96.r),
+        buttonSize: Size(24.r, 24.r),
         config: widget.config,
         visibilityNotifier: barVisibilityNotifier,
         restartHideTimerNotifier: barRestartHideTimerNotifier,
@@ -319,15 +320,13 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
     return Positioned(
       left: 0,
       right: 0,
-      bottom: isLightStyle ? 10 : 0,
+      bottom: isLightStyle ? 44.r : 0,
       child: ZegoBottomMenuBar(
-        buttonSize: Size(96.r, 96.r),
         config: widget.config,
         visibilityNotifier: barVisibilityNotifier,
         restartHideTimerNotifier: barRestartHideTimerNotifier,
         height: isLightStyle ? null : 208.r,
-        backgroundColor:
-            isLightStyle ? null : ZegoUIKitDefaultTheme.viewBackgroundColor,
+        backgroundColor: isLightStyle ? null : ZegoUIKitDefaultTheme.viewBackgroundColor,
         borderRadius: isLightStyle ? null : 32.r,
       ),
     );
