@@ -46,8 +46,8 @@ class _ZegoMemberListButtonState extends State<ZegoMemberListButton> {
 
   @override
   Widget build(BuildContext context) {
-    Size containerSize = widget.buttonSize ?? Size(96.r, 96.r);
-    Size sizeBoxSize = widget.iconSize ?? Size(56.r, 56.r);
+    Size containerSize = widget.buttonSize ?? Size(24.r, 24.r);
+    Size sizeBoxSize = widget.iconSize ?? Size(24.r, 24.r);
 
     return GestureDetector(
       onTap: () {

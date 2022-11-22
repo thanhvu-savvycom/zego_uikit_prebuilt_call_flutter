@@ -20,26 +20,24 @@ class ZegoInviterCallingBottomToolBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120.h,
-      child: Center(
-        child: ZegoCancelInvitationButton(
-          invitees: invitees.map((e) => e.id).toList(),
-          icon: ButtonIcon(
-            icon: Image(
-              image: PrebuiltCallImage.asset(
-                      InvitationStyleIconUrls.toolbarBottomCancel)
-                  .image,
-              fit: BoxFit.fill,
-            ),
+    return Center(
+      child: ZegoCancelInvitationButton(
+        invitees: invitees.map((e) => e.id).toList(),
+        text: "Huỷ",
+        icon: ButtonIcon(
+          icon: Image(
+            image: PrebuiltCallImage.asset(
+                    InvitationStyleIconUrls.callDecline)
+                .image,
+            fit: BoxFit.fill,
           ),
-          buttonSize: Size(120.r, 120.r),
-          iconSize: Size(120.r, 120.r),
-          onPressed: (String code, String message, List<String> errorInvitees) {
-            ZegoInvitationPageManager.instance
-                .onLocalCancelInvitation(code, message, errorInvitees);
-          },
         ),
+        buttonSize: Size(72.r, 72.r),
+        iconSize: Size(72.r, 72.r),
+        onPressed: (String code, String message, List<String> errorInvitees) {
+          ZegoInvitationPageManager.instance
+              .onLocalCancelInvitation(code, message, errorInvitees);
+        },
       ),
     );
   }
@@ -72,55 +70,62 @@ class ZegoInviteeCallingBottomToolBarState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 170.h,
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ZegoRefuseInvitationButton(
-              inviterID: widget.inviter.id,
-              // data customization is not supported
-              data: '{"reason":"decline"}',
-              text: "Decline",
-              icon: ButtonIcon(
-                icon: Image(
-                  image: PrebuiltCallImage.asset(
-                          InvitationStyleIconUrls.toolbarBottomDecline)
-                      .image,
-                  fit: BoxFit.fill,
-                ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 44.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ZegoRefuseInvitationButton(
+            inviterID: widget.inviter.id,
+            // data customization is not supported
+            data: '{"reason":"decline"}',
+            text: "Từ chối",
+            icon: ButtonIcon(
+              icon: Image(
+                image: PrebuiltCallImage.asset(
+                        InvitationStyleIconUrls.callDecline)
+                    .image,
+                fit: BoxFit.fill,
               ),
-              buttonSize: Size(120.r, 120.r + 50.r),
-              iconSize: Size(120.r, 120.r),
-              onPressed: (String code, String message) {
-                ZegoInvitationPageManager.instance
-                    .onLocalRefuseInvitation(code, message);
-              },
             ),
-            SizedBox(width: 230.r),
-            ZegoAcceptInvitationButton(
-              inviterID: widget.inviter.id,
-              icon: ButtonIcon(
-                icon: Image(
-                  image: PrebuiltCallImage.asset(
-                          imageURLByInvitationType(widget.invitationType))
-                      .image,
-                  fit: BoxFit.fill,
-                ),
+            buttonSize: Size(72.r, 72.r),
+            iconSize: Size(72.r, 72.r),
+            onPressed: (String code, String message) {
+              ZegoInvitationPageManager.instance
+                  .onLocalRefuseInvitation(code, message);
+            },
+          ),
+          const Spacer(),
+          ZegoAcceptInvitationButton(
+            inviterID: widget.inviter.id,
+            icon: ButtonIcon(
+              icon: Image(
+                image: PrebuiltCallImage.asset(
+                    imageCallURLByInvitationType(widget.invitationType))
+                    .image,
+                fit: BoxFit.fill,
               ),
-              text: "Accept",
-              buttonSize: Size(120.r, 120.r + 50.r),
-              iconSize: Size(120.r, 120.r),
-              onPressed: (String code, String message) {
-                ZegoInvitationPageManager.instance
-                    .onLocalAcceptInvitation(code, message);
-              },
             ),
-          ],
-        ),
+            text: "Nghe máy",
+            buttonSize: Size(72.r, 72.r),
+            iconSize: Size(72.r, 72.r),
+            onPressed: (String code, String message) {
+              ZegoInvitationPageManager.instance
+                  .onLocalAcceptInvitation(code, message);
+            },
+          ),
+        ],
       ),
     );
+  }
+
+  String imageCallURLByInvitationType(ZegoInvitationType invitationType) {
+    switch (invitationType) {
+      case ZegoInvitationType.voiceCall:
+        return InvitationStyleIconUrls.callAcceptAudio;
+      case ZegoInvitationType.videoCall:
+        return InvitationStyleIconUrls.callAcceptVideo;
+    }
   }
 
   String imageURLByInvitationType(ZegoInvitationType invitationType) {

@@ -29,6 +29,7 @@ dev_dependencies:
 flutter:
   assets:
     # call
+    - assets/
     - assets/icons/
 
     # invitation

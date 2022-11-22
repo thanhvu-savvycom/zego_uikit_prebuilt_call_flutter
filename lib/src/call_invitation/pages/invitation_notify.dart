@@ -12,8 +12,7 @@ import 'package:zego_uikit_prebuilt_call/src/call_invitation/pages/page_manager.
 
 // Project imports:
 
-typedef AvatarBuilder = Widget Function(
-    BuildContext context, Size size, ZegoUIKitUser? user, Map extraInfo);
+typedef AvatarBuilder = Widget Function(BuildContext context, Size size, ZegoUIKitUser? user, Map extraInfo);
 
 /// top sheet, popup when invitee receive a invitation
 class ZegoCallInvitationDialog extends StatefulWidget {
@@ -27,137 +26,137 @@ class ZegoCallInvitationDialog extends StatefulWidget {
   final AvatarBuilder? avatarBuilder;
 
   @override
-  ZegoCallInvitationDialogState createState() =>
-      ZegoCallInvitationDialogState();
+  ZegoCallInvitationDialogState createState() => ZegoCallInvitationDialogState();
 }
 
 class ZegoCallInvitationDialogState extends State<ZegoCallInvitationDialog> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      width: 718.w,
-      height: 160.h,
-      decoration: BoxDecoration(
-        color: const Color(0xff333333).withOpacity(0.8),
-        borderRadius: BorderRadius.circular(16.0),
+    return Card(
+      color: Color(0xFF0A0B09).withOpacity(0.8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16.r)),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          widget.avatarBuilder?.call(context, Size(84.r, 84.r),
-                  widget.invitationData.inviter, {}) ??
-              circleName(widget.invitationData.inviter?.name ?? ""),
-          SizedBox(width: 26.w),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 350.w,
-                child: Text(
-                  widget.invitationData.inviter?.name ?? "",
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 36.0.r,
-                    fontWeight: FontWeight.w500,
-                    decoration: TextDecoration.none,
+      margin: EdgeInsets.symmetric(horizontal: 10.w),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 22.w),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            widget.avatarBuilder?.call(context, Size(45.r, 45.r), widget.invitationData.inviter, {}) ??
+                circleName(widget.invitationData.inviter?.name ?? ""),
+            SizedBox(width: 16.w),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.invitationData.inviter?.name ?? "",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0.r,
+                        fontWeight: FontWeight.w500,
+                        decoration: TextDecoration.none,
+                        height: 28 / 20),
                   ),
-                ),
-              ),
-              SizedBox(height: 7.h),
-              Text(
-                invitationTypeString(
-                  widget.invitationData.type,
-                  widget.invitationData.invitees,
-                ),
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24.0.r,
-                  fontWeight: FontWeight.w400,
-                  decoration: TextDecoration.none,
-                ),
-              )
-            ],
-          ),
-          const Expanded(child: SizedBox()),
-          Listener(
-            onPointerDown: (e) {
-              ZegoInvitationPageManager.instance.hideInvitationTopSheet();
-            },
-            child: AbsorbPointer(
-              absorbing: false,
-              child: ZegoRefuseInvitationButton(
-                inviterID: widget.invitationData.inviter?.id ?? "",
-                // customization is not supported
-                data: '{"reason":"decline"}',
-                icon: ButtonIcon(
-                  icon: Image(
-                    image: PrebuiltCallImage.asset(
-                            InvitationStyleIconUrls.inviteReject)
-                        .image,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                iconSize: Size(74.r, 74.r),
-                buttonSize: Size(74.r, 74.r),
-                onPressed: (String code, String message) {
-                  ZegoInvitationPageManager.instance
-                      .onLocalRefuseInvitation(code, message);
-                },
+                  SizedBox(height: 4.h),
+                  Text(
+                    invitationTypeString(
+                      widget.invitationData.type,
+                      widget.invitationData.invitees,
+                    ),
+                    style: TextStyle(
+                        color: Color(0xFF99EBEBF5),
+                        fontSize: 20.r,
+                        fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.none,
+                        height: 28 / 20),
+                  )
+                ],
               ),
             ),
-          ),
-          SizedBox(width: 40.w),
-          Listener(
-            onPointerDown: (e) {
-              ZegoInvitationPageManager.instance.hideInvitationTopSheet();
-            },
-            child: AbsorbPointer(
-              absorbing: false,
-              child: ZegoAcceptInvitationButton(
-                inviterID: widget.invitationData.inviter?.id ?? "",
-                icon: ButtonIcon(
-                  icon: Image(
-                    image: PrebuiltCallImage.asset(imageURLByInvitationType(
-                            widget.invitationData.type))
-                        .image,
-                    fit: BoxFit.fill,
+            Listener(
+              onPointerDown: (e) {
+                ZegoInvitationPageManager.instance.hideInvitationTopSheet();
+              },
+              child: AbsorbPointer(
+                absorbing: false,
+                child: ZegoRefuseInvitationButton(
+                  inviterID: widget.invitationData.inviter?.id ?? "",
+                  // customization is not supported
+                  data: '{"reason":"decline"}',
+                  icon: ButtonIcon(
+                    icon: Image(
+                      image: PrebuiltCallImage.asset(InvitationStyleIconUrls.callDecline).image,
+                      fit: BoxFit.fill,
+                    ),
                   ),
+                  iconSize: Size(36.r, 36.r),
+                  buttonSize: Size(36.r, 36.r),
+                  onPressed: (String code, String message) {
+                    ZegoInvitationPageManager.instance.onLocalRefuseInvitation(code, message);
+                  },
                 ),
-                iconSize: Size(74.r, 74.r),
-                buttonSize: Size(74.r, 74.r),
-                onPressed: (String code, String message) {
-                  ZegoInvitationPageManager.instance
-                      .onLocalAcceptInvitation(code, message);
-                },
               ),
             ),
-          ),
-        ],
+            SizedBox(width: 14.w),
+            Listener(
+              onPointerDown: (e) {
+                ZegoInvitationPageManager.instance.hideInvitationTopSheet();
+              },
+              child: AbsorbPointer(
+                absorbing: false,
+                child: ZegoAcceptInvitationButton(
+                  inviterID: widget.invitationData.inviter?.id ?? "",
+                  icon: ButtonIcon(
+                    icon: Image(
+                      image: PrebuiltCallImage.asset(imageCallURLByInvitationType(widget.invitationData.type)).image,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  iconSize: Size(36.r, 36.r),
+                  buttonSize: Size(36.r, 36.r),
+                  onPressed: (String code, String message) {
+                    ZegoInvitationPageManager.instance.onLocalAcceptInvitation(code, message);
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget circleName(String name) {
     return Container(
-      width: 84.r,
-      height: 84.r,
-      decoration:
-          const BoxDecoration(color: Color(0xffDBDDE3), shape: BoxShape.circle),
+      width: 45.r,
+      height: 45.r,
+      decoration: const BoxDecoration(color: Color(0xffDBDDE3), shape: BoxShape.circle),
       child: Center(
         child: Text(
           name.isNotEmpty ? name.characters.first : "",
           style: TextStyle(
-            fontSize: 60.0.r,
+            fontSize: 28.r,
             color: const Color(0xff222222),
             decoration: TextDecoration.none,
           ),
         ),
       ),
     );
+  }
+
+  String imageCallURLByInvitationType(ZegoInvitationType invitationType) {
+    switch (invitationType) {
+      case ZegoInvitationType.voiceCall:
+        return InvitationStyleIconUrls.callAcceptAudio;
+      case ZegoInvitationType.videoCall:
+        return InvitationStyleIconUrls.callAcceptVideo;
+    }
   }
 
   String imageURLByInvitationType(ZegoInvitationType invitationType) {
@@ -169,8 +168,7 @@ class ZegoCallInvitationDialogState extends State<ZegoCallInvitationDialog> {
     }
   }
 
-  String invitationTypeString(
-      ZegoInvitationType invitationType, List<ZegoUIKitUser> invitees) {
+  String invitationTypeString(ZegoInvitationType invitationType, List<ZegoUIKitUser> invitees) {
     switch (invitationType) {
       case ZegoInvitationType.voiceCall:
         return invitees.length > 1 ? "Group voice call" : "Voice call";

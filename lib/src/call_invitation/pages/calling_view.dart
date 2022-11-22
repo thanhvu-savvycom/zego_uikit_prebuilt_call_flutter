@@ -58,21 +58,21 @@ class ZegoCallingInviterView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         isVideo ? const ZegoInviterCallingVideoTopToolBar() : Container(),
-        isVideo ? SizedBox(height: 140.h) : SizedBox(height: 228.h),
+        isVideo ? SizedBox(height: 80.h) : SizedBox(height: 120.h),
         SizedBox(
-          width: 200.r,
-          height: 200.r,
+          width: 120.r,
+          height: 120.r,
           child: avatarBuilder
-                  ?.call(context, Size(200.r, 200.r), firstInvitee, {}) ??
+                  ?.call(context, Size(120.r, 120.r), firstInvitee, {}) ??
               circleAvatar(firstInvitee.name),
         ),
         SizedBox(height: 10.r),
         centralName(firstInvitee.name),
-        SizedBox(height: 47.r),
-        callingText(),
+        SizedBox(height: 8.r),
+        callingText(invitationType),
         const Expanded(child: SizedBox()),
         ZegoInviterCallingBottomToolBar(invitees: invitees),
-        SizedBox(height: 105.r),
+        SizedBox(height: 90.r),
       ],
     );
   }
@@ -107,25 +107,25 @@ class ZegoCallingInviteeView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: 280.r),
+        SizedBox(height: 150.r),
         SizedBox(
-          width: 200.r,
-          height: 200.r,
+          width: 120.r,
+          height: 120.r,
           child:
-              avatarBuilder?.call(context, Size(200.r, 200.r), inviter, {}) ??
+              avatarBuilder?.call(context, Size(120.r, 120.r), inviter, {}) ??
                   circleAvatar(inviter.name),
         ),
         SizedBox(height: 10.r),
         centralName(inviter.name),
-        SizedBox(height: 47.r),
-        callingText(),
+        SizedBox(height: 8.r),
+        callingText(invitationType),
         const Expanded(child: SizedBox()),
         ZegoInviteeCallingBottomToolBar(
           inviter: inviter,
           invitees: invitees,
           invitationType: invitationType,
         ),
-        SizedBox(height: 105.r),
+        SizedBox(height: 90.r),
       ],
     );
   }
@@ -135,39 +135,39 @@ Widget backgroundImage() {
   return Container(
     width: double.infinity,
     height: double.infinity,
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        image: PrebuiltCallImage.asset(InvitationStyleIconUrls.inviteBackground)
-            .image,
-        fit: BoxFit.fitHeight,
-      ),
-    ),
+    color: Color(0xFF212E4A)
+    // decoration: BoxDecoration(
+    //   image: DecorationImage(
+    //     image: PrebuiltCallImage.asset(InvitationStyleIconUrls.inviteBackground)
+    //         .image,
+    //     fit: BoxFit.fitHeight,
+    //   ),
+    // ),
   );
 }
 
 Widget centralName(String name) {
-  return SizedBox(
-    height: 59.h,
-    child: Text(
-      name,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 42.0.r,
-        decoration: TextDecoration.none,
-        fontWeight: FontWeight.w500,
-      ),
+  return Text(
+    name,
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 18.0.r,
+      decoration: TextDecoration.none,
+      fontWeight: FontWeight.w700,
+      height: 24/18
     ),
   );
 }
 
-Widget callingText() {
+Widget callingText(ZegoInvitationType invitationType) {
   return Text(
-    "Calling…",
+    invitationType == ZegoInvitationType.videoCall ? "Cuộc gọi Video đến" : "Cuộc gọi đến",
     style: TextStyle(
       color: Colors.white,
-      fontSize: 32.0.r,
+      fontSize: 14.0.r,
       fontWeight: FontWeight.w400,
       decoration: TextDecoration.none,
+      height: 20/14
     ),
   );
 }

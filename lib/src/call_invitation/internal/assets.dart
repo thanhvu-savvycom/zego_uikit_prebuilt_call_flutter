@@ -20,4 +20,8 @@ class InvitationStyleIconUrls {
       'assets/invitation/icons/toolbar_bottom_cancel.png';
   static const String toolbarTopSwitchCamera =
       'assets/invitation/icons/toolbar_top_switch_camera.png';
+
+  static const String callDecline = 'assets/call_decline.png';
+  static const String callAcceptAudio = 'assets/call_audio_accept.png';
+  static const String callAcceptVideo = 'assets/call_video_accept.png';
 }
