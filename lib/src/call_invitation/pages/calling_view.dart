@@ -57,8 +57,9 @@ class ZegoCallingInviterView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        isVideo ? const ZegoInviterCallingVideoTopToolBar() : Container(),
-        isVideo ? SizedBox(height: 80.h) : SizedBox(height: 120.h),
+        // isVideo ? const ZegoInviterCallingVideoTopToolBar() : Container(),
+        // isVideo ? SizedBox(height: 80.h) : SizedBox(height: 120.h),
+        SizedBox(height: 150.r),
         SizedBox(
           width: 120.r,
           height: 120.r,
@@ -69,7 +70,7 @@ class ZegoCallingInviterView extends StatelessWidget {
         SizedBox(height: 10.r),
         centralName(firstInvitee.name),
         SizedBox(height: 8.r),
-        callingText(invitationType),
+        callingText(invitationType, true),
         const Expanded(child: SizedBox()),
         ZegoInviterCallingBottomToolBar(invitees: invitees),
         SizedBox(height: 90.r),
@@ -118,7 +119,7 @@ class ZegoCallingInviteeView extends StatelessWidget {
         SizedBox(height: 10.r),
         centralName(inviter.name),
         SizedBox(height: 8.r),
-        callingText(invitationType),
+        callingText(invitationType, false),
         const Expanded(child: SizedBox()),
         ZegoInviteeCallingBottomToolBar(
           inviter: inviter,
@@ -159,9 +160,9 @@ Widget centralName(String name) {
   );
 }
 
-Widget callingText(ZegoInvitationType invitationType) {
+Widget callingText(ZegoInvitationType invitationType, bool isInvitee) {
   return Text(
-    invitationType == ZegoInvitationType.videoCall ? "Cuộc gọi Video đến" : "Cuộc gọi đến",
+    isInvitee ? "Đang gọi..." : invitationType == ZegoInvitationType.videoCall ? "Cuộc gọi Video đến" : "Cuộc gọi đến",
     style: TextStyle(
       color: Colors.white,
       fontSize: 14.0.r,

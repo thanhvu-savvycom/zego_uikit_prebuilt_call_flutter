@@ -24,6 +24,12 @@ class ZegoInviterCallingBottomToolBar extends StatelessWidget {
       child: ZegoCancelInvitationButton(
         invitees: invitees.map((e) => e.id).toList(),
         text: "Huỷ",
+        textStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            height: 20/14
+        ),
         icon: ButtonIcon(
           icon: Image(
             image: PrebuiltCallImage.asset(
@@ -32,7 +38,7 @@ class ZegoInviterCallingBottomToolBar extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        buttonSize: Size(72.r, 72.r),
+        buttonSize: Size(72.r, 72.r + 30.r),
         iconSize: Size(72.r, 72.r),
         onPressed: (String code, String message, List<String> errorInvitees) {
           ZegoInvitationPageManager.instance
@@ -80,6 +86,12 @@ class ZegoInviteeCallingBottomToolBarState
             // data customization is not supported
             data: '{"reason":"decline"}',
             text: "Từ chối",
+            textStyle: const TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              height: 20/14
+            ),
             icon: ButtonIcon(
               icon: Image(
                 image: PrebuiltCallImage.asset(
@@ -88,7 +100,7 @@ class ZegoInviteeCallingBottomToolBarState
                 fit: BoxFit.fill,
               ),
             ),
-            buttonSize: Size(72.r, 72.r),
+            buttonSize: Size(72.r, 72.r + 30.r),
             iconSize: Size(72.r, 72.r),
             onPressed: (String code, String message) {
               ZegoInvitationPageManager.instance
@@ -107,7 +119,13 @@ class ZegoInviteeCallingBottomToolBarState
               ),
             ),
             text: "Nghe máy",
-            buttonSize: Size(72.r, 72.r),
+            textStyle: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                height: 20/14
+            ),
+            buttonSize: Size(72.r, 72.r + 30.r),
             iconSize: Size(72.r, 72.r),
             onPressed: (String code, String message) {
               ZegoInvitationPageManager.instance
