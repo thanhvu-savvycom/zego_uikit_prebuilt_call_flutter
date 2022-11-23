@@ -10,7 +10,7 @@ import 'package:zego_uikit/zego_uikit.dart';
 class ZegoAudioVideoForeground extends StatelessWidget {
   final Size size;
   final ZegoUIKitUser? user;
-
+  final bool isInviter;
   final bool showMicrophoneStateOnView;
   final bool showCameraStateOnView;
   final bool showUserNameOnView;
@@ -22,6 +22,7 @@ class ZegoAudioVideoForeground extends StatelessWidget {
     this.showMicrophoneStateOnView = true,
     this.showCameraStateOnView = true,
     this.showUserNameOnView = true,
+    required this.isInviter,
   }) : super(key: key);
 
   @override
@@ -32,17 +33,21 @@ class ZegoAudioVideoForeground extends StatelessWidget {
     return LayoutBuilder(builder: ((context, constraints) {
       return Container(
         padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
         child: Stack(
           children: [
-            Positioned(
-              top: 40.h,
-              left: 0,
-              right: 0,
-              child: Container(
-                alignment: Alignment.center,
-                child: userName(
-                  context,
-                  constraints.maxWidth * 0.8,
+            Visibility(
+              visible: isInviter,
+              child: Positioned(
+                top: 40.h,
+                left: 0,
+                right: 0,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: userName(
+                    context,
+                    constraints.maxWidth * 0.8,
+                  ),
                 ),
               ),
             ),

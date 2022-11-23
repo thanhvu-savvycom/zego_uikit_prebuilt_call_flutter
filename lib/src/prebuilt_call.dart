@@ -385,18 +385,16 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
         widget.config.audioVideoViewConfig.foregroundBuilder
                 ?.call(context, size, user, extraInfo) ??
             Container(color: Colors.transparent),
-        Visibility(
-          visible: user?.id != widget.userID,
-          child: ZegoAudioVideoForeground(
-            size: size,
-            user: user,
-            showMicrophoneStateOnView:
-                widget.config.audioVideoViewConfig.showMicrophoneStateOnView,
-            showCameraStateOnView:
-                widget.config.audioVideoViewConfig.showCameraStateOnView,
-            showUserNameOnView:
-                widget.config.audioVideoViewConfig.showUserNameOnView,
-          ),
+        ZegoAudioVideoForeground(
+          size: size,
+          user: user,
+          isInviter: user?.id == widget.userID,
+          showMicrophoneStateOnView:
+              widget.config.audioVideoViewConfig.showMicrophoneStateOnView,
+          showCameraStateOnView:
+              widget.config.audioVideoViewConfig.showCameraStateOnView,
+          showUserNameOnView:
+              widget.config.audioVideoViewConfig.showUserNameOnView,
         ),
       ],
     );

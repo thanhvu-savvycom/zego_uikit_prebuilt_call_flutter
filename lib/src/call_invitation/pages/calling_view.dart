@@ -61,6 +61,7 @@ class ZegoCallingInviterView extends StatelessWidget {
         ZegoRippleAvatar(
           minRadius: 120 / 2.0,
           radiusIncrement: 0.12,
+          color: Color(0xFF5975A8),
           soundLevelStream: ZegoUIKit().getSoundLevelStream(firstInvitee.id),
           child:
               avatarBuilder?.call(context, Size(120.r, 120.r), firstInvitee, {}) ?? circleAvatar(firstInvitee.name),
@@ -110,6 +111,7 @@ class ZegoCallingInviteeView extends StatelessWidget {
         ZegoRippleAvatar(
           minRadius: 120 / 2.0,
           radiusIncrement: 0.12,
+          color: Color(0xFF5975A8),
           soundLevelStream: ZegoUIKit().getSoundLevelStream(inviter.id),
           child: avatarBuilder?.call(context, Size(120.r, 120.r), inviter, {}) ?? circleAvatar(inviter.name),
         ),

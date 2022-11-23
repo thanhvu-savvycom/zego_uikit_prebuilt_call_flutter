@@ -33,8 +33,7 @@ class ZegoAudioVideoBackground extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
     var isSmallView = size.height < screenSize.height / 2;
 
-    var avatarSize =
-        Size(isSmallView ? 120.r : 250.r, isSmallView ? 120.r : 250.r);
+    var avatarSize = Size(isSmallView ? 120.r : 250.r, isSmallView ? 120.r : 250.r);
     var centralAvatar = avatarBuilder?.call(context, avatarSize, user, {}) ??
         circleName(context, size, user, isSmallView ? 46.0.r : 68.0.r);
 
@@ -46,8 +45,8 @@ class ZegoAudioVideoBackground extends StatelessWidget {
             ? ZegoRippleAvatar(
                 minRadius: avatarSize.width / 2.0,
                 radiusIncrement: isSmallView ? 0.12 : 0.06,
-                soundLevelStream:
-                    ZegoUIKit().getSoundLevelStream(user?.id ?? ""),
+                color: Color(0xFF5975A8),
+                soundLevelStream: ZegoUIKit().getSoundLevelStream(user?.id ?? ""),
                 child: centralAvatar,
               )
             : centralAvatar,
@@ -55,12 +54,10 @@ class ZegoAudioVideoBackground extends StatelessWidget {
     );
   }
 
-  Widget circleName(
-      BuildContext context, Size size, ZegoUIKitUser? user, double fontSize) {
+  Widget circleName(BuildContext context, Size size, ZegoUIKitUser? user, double fontSize) {
     var userName = user?.name ?? "";
     return Container(
-      decoration:
-          const BoxDecoration(color: Color(0xffDBDDE3), shape: BoxShape.circle),
+      decoration: const BoxDecoration(color: Color(0xffDBDDE3), shape: BoxShape.circle),
       child: Center(
         child: Text(
           userName.isNotEmpty ? userName.characters.first : "",
