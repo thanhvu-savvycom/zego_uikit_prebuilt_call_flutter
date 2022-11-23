@@ -385,15 +385,18 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
         widget.config.audioVideoViewConfig.foregroundBuilder
                 ?.call(context, size, user, extraInfo) ??
             Container(color: Colors.transparent),
-        ZegoAudioVideoForeground(
-          size: size,
-          user: user,
-          showMicrophoneStateOnView:
-              widget.config.audioVideoViewConfig.showMicrophoneStateOnView,
-          showCameraStateOnView:
-              widget.config.audioVideoViewConfig.showCameraStateOnView,
-          showUserNameOnView:
-              widget.config.audioVideoViewConfig.showUserNameOnView,
+        Visibility(
+          visible: user?.id != widget.userID,
+          child: ZegoAudioVideoForeground(
+            size: size,
+            user: user,
+            showMicrophoneStateOnView:
+                widget.config.audioVideoViewConfig.showMicrophoneStateOnView,
+            showCameraStateOnView:
+                widget.config.audioVideoViewConfig.showCameraStateOnView,
+            showUserNameOnView:
+                widget.config.audioVideoViewConfig.showUserNameOnView,
+          ),
         ),
       ],
     );
@@ -407,7 +410,7 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
     var backgroundColor =
         isSmallView ? const Color(0xff333437) : const Color(0xff4A4B4D);
     if (widget.config.layout is ZegoLayoutGalleryConfig) {
-      backgroundColor = const Color(0xff4A4B4D);
+      backgroundColor = const Color(0xff212E4A);
     }
 
     return Stack(

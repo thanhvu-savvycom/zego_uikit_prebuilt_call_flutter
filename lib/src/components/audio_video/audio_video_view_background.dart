@@ -34,7 +34,7 @@ class ZegoAudioVideoBackground extends StatelessWidget {
     var isSmallView = size.height < screenSize.height / 2;
 
     var avatarSize =
-        Size(isSmallView ? 110.r : 258.r, isSmallView ? 110.r : 258.r);
+        Size(isSmallView ? 120.r : 250.r, isSmallView ? 120.r : 250.r);
     var centralAvatar = avatarBuilder?.call(context, avatarSize, user, {}) ??
         circleName(context, size, user, isSmallView ? 46.0.r : 68.0.r);
 

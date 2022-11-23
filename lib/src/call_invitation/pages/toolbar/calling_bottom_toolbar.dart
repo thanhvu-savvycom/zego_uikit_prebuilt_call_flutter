@@ -28,21 +28,18 @@ class ZegoInviterCallingBottomToolBar extends StatelessWidget {
             color: Colors.white,
             fontSize: 14,
             fontWeight: FontWeight.w400,
-            height: 20/14
-        ),
+            height: 20 / 14,
+            decoration: TextDecoration.none),
         icon: ButtonIcon(
           icon: Image(
-            image: PrebuiltCallImage.asset(
-                    InvitationStyleIconUrls.callDecline)
-                .image,
+            image: PrebuiltCallImage.asset(InvitationStyleIconUrls.callDecline).image,
             fit: BoxFit.fill,
           ),
         ),
         buttonSize: Size(72.r, 72.r + 30.r),
         iconSize: Size(72.r, 72.r),
         onPressed: (String code, String message, List<String> errorInvitees) {
-          ZegoInvitationPageManager.instance
-              .onLocalCancelInvitation(code, message, errorInvitees);
+          ZegoInvitationPageManager.instance.onLocalCancelInvitation(code, message, errorInvitees);
         },
       ),
     );
@@ -67,8 +64,7 @@ class ZegoInviteeCallingBottomToolBar extends StatefulWidget {
   }
 }
 
-class ZegoInviteeCallingBottomToolBarState
-    extends State<ZegoInviteeCallingBottomToolBar> {
+class ZegoInviteeCallingBottomToolBarState extends State<ZegoInviteeCallingBottomToolBar> {
   @override
   void initState() {
     super.initState();
@@ -87,24 +83,21 @@ class ZegoInviteeCallingBottomToolBarState
             data: '{"reason":"decline"}',
             text: "Từ chối",
             textStyle: const TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              height: 20/14
-            ),
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                height: 20 / 14,
+                decoration: TextDecoration.none),
             icon: ButtonIcon(
               icon: Image(
-                image: PrebuiltCallImage.asset(
-                        InvitationStyleIconUrls.callDecline)
-                    .image,
+                image: PrebuiltCallImage.asset(InvitationStyleIconUrls.callDecline).image,
                 fit: BoxFit.fill,
               ),
             ),
             buttonSize: Size(72.r, 72.r + 30.r),
             iconSize: Size(72.r, 72.r),
             onPressed: (String code, String message) {
-              ZegoInvitationPageManager.instance
-                  .onLocalRefuseInvitation(code, message);
+              ZegoInvitationPageManager.instance.onLocalRefuseInvitation(code, message);
             },
           ),
           const Spacer(),
@@ -112,9 +105,7 @@ class ZegoInviteeCallingBottomToolBarState
             inviterID: widget.inviter.id,
             icon: ButtonIcon(
               icon: Image(
-                image: PrebuiltCallImage.asset(
-                    imageCallURLByInvitationType(widget.invitationType))
-                    .image,
+                image: PrebuiltCallImage.asset(imageCallURLByInvitationType(widget.invitationType)).image,
                 fit: BoxFit.fill,
               ),
             ),
@@ -123,13 +114,12 @@ class ZegoInviteeCallingBottomToolBarState
                 color: Colors.white,
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
-                height: 20/14
-            ),
+                height: 20 / 14,
+                decoration: TextDecoration.none),
             buttonSize: Size(72.r, 72.r + 30.r),
             iconSize: Size(72.r, 72.r),
             onPressed: (String code, String message) {
-              ZegoInvitationPageManager.instance
-                  .onLocalAcceptInvitation(code, message);
+              ZegoInvitationPageManager.instance.onLocalAcceptInvitation(code, message);
             },
           ),
         ],

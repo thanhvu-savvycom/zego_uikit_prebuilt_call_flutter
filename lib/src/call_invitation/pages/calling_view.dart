@@ -13,8 +13,7 @@ import 'package:zego_uikit_prebuilt_call/src/call_invitation/internal/internal.d
 import 'toolbar/calling_bottom_toolbar.dart';
 import 'toolbar/calling_top_toolbar.dart';
 
-typedef AvatarBuilder = Widget Function(
-    BuildContext context, Size size, ZegoUIKitUser? user, Map extraInfo);
+typedef AvatarBuilder = Widget Function(BuildContext context, Size size, ZegoUIKitUser? user, Map extraInfo);
 
 class ZegoCallingInviterView extends StatelessWidget {
   const ZegoCallingInviterView({
@@ -51,8 +50,7 @@ class ZegoCallingInviterView extends StatelessWidget {
   Widget surface(BuildContext context) {
     var isVideo = ZegoInvitationType.videoCall == invitationType;
 
-    var firstInvitee =
-        invitees.isNotEmpty ? invitees.first : ZegoUIKitUser.empty();
+    var firstInvitee = invitees.isNotEmpty ? invitees.first : ZegoUIKitUser.empty();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,12 +58,12 @@ class ZegoCallingInviterView extends StatelessWidget {
         // isVideo ? const ZegoInviterCallingVideoTopToolBar() : Container(),
         // isVideo ? SizedBox(height: 80.h) : SizedBox(height: 120.h),
         SizedBox(height: 150.r),
-        SizedBox(
-          width: 120.r,
-          height: 120.r,
-          child: avatarBuilder
-                  ?.call(context, Size(120.r, 120.r), firstInvitee, {}) ??
-              circleAvatar(firstInvitee.name),
+        ZegoRippleAvatar(
+          minRadius: 120 / 2.0,
+          radiusIncrement: 0.12,
+          soundLevelStream: ZegoUIKit().getSoundLevelStream(firstInvitee.id),
+          child:
+              avatarBuilder?.call(context, Size(120.r, 120.r), firstInvitee, {}) ?? circleAvatar(firstInvitee.name),
         ),
         SizedBox(height: 10.r),
         centralName(firstInvitee.name),
@@ -109,12 +107,11 @@ class ZegoCallingInviteeView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: 150.r),
-        SizedBox(
-          width: 120.r,
-          height: 120.r,
-          child:
-              avatarBuilder?.call(context, Size(120.r, 120.r), inviter, {}) ??
-                  circleAvatar(inviter.name),
+        ZegoRippleAvatar(
+          minRadius: 120 / 2.0,
+          radiusIncrement: 0.12,
+          soundLevelStream: ZegoUIKit().getSoundLevelStream(inviter.id),
+          child: avatarBuilder?.call(context, Size(120.r, 120.r), inviter, {}) ?? circleAvatar(inviter.name),
         ),
         SizedBox(height: 10.r),
         centralName(inviter.name),
@@ -133,18 +130,15 @@ class ZegoCallingInviteeView extends StatelessWidget {
 }
 
 Widget backgroundImage() {
-  return Container(
-    width: double.infinity,
-    height: double.infinity,
-    color: Color(0xFF212E4A)
-    // decoration: BoxDecoration(
-    //   image: DecorationImage(
-    //     image: PrebuiltCallImage.asset(InvitationStyleIconUrls.inviteBackground)
-    //         .image,
-    //     fit: BoxFit.fitHeight,
-    //   ),
-    // ),
-  );
+  return Container(width: double.infinity, height: double.infinity, color: Color(0xFF212E4A)
+      // decoration: BoxDecoration(
+      //   image: DecorationImage(
+      //     image: PrebuiltCallImage.asset(InvitationStyleIconUrls.inviteBackground)
+      //         .image,
+      //     fit: BoxFit.fitHeight,
+      //   ),
+      // ),
+      );
 }
 
 Widget centralName(String name) {
@@ -155,21 +149,24 @@ Widget centralName(String name) {
       fontSize: 18.0.r,
       decoration: TextDecoration.none,
       fontWeight: FontWeight.w700,
-      height: 24/18
+      height: 24 / 18,
     ),
   );
 }
 
 Widget callingText(ZegoInvitationType invitationType, bool isInvitee) {
   return Text(
-    isInvitee ? "Đang gọi..." : invitationType == ZegoInvitationType.videoCall ? "Cuộc gọi Video đến" : "Cuộc gọi đến",
+    isInvitee
+        ? "Đang gọi..."
+        : invitationType == ZegoInvitationType.videoCall
+            ? "Cuộc gọi Video đến"
+            : "Cuộc gọi đến",
     style: TextStyle(
-      color: Colors.white,
-      fontSize: 14.0.r,
-      fontWeight: FontWeight.w400,
-      decoration: TextDecoration.none,
-      height: 20/14
-    ),
+        color: Colors.white,
+        fontSize: 14.0.r,
+        fontWeight: FontWeight.w400,
+        decoration: TextDecoration.none,
+        height: 20 / 14),
   );
 }
 

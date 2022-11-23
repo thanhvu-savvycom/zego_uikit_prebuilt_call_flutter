@@ -35,27 +35,39 @@ class ZegoAudioVideoForeground extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-              bottom: 0,
+              top: 40.h,
+              left: 0,
               right: 0,
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.2),
-                  borderRadius: const BorderRadius.all(Radius.circular(4)),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    userName(
-                      context,
-                      constraints.maxWidth * 0.8,
-                    ),
-                    microphoneStateIcon(),
-                    cameraStateIcon(),
-                  ],
+                alignment: Alignment.center,
+                child: userName(
+                  context,
+                  constraints.maxWidth * 0.8,
                 ),
               ),
-            )
+            ),
+            // Positioned(
+            //   bottom: 0,
+            //   right: 0,
+            //   child: Container(
+            //     padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
+            //     decoration: BoxDecoration(
+            //       color: Colors.black.withOpacity(0.2),
+            //       borderRadius: const BorderRadius.all(Radius.circular(4)),
+            //     ),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.end,
+            //       children: [
+            //         userName(
+            //           context,
+            //           constraints.maxWidth * 0.8,
+            //         ),
+            //         microphoneStateIcon(),
+            //         cameraStateIcon(),
+            //       ],
+            //     ),
+            //   ),
+            // )
           ],
         ),
       );
@@ -70,10 +82,12 @@ class ZegoAudioVideoForeground extends StatelessWidget {
             ),
             child: Text(
               user?.name ?? "",
+              textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: 24.0.r,
-                color: const Color(0xffffffff),
+                fontSize: 18.0.r,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
                 decoration: TextDecoration.none,
               ),
             ),
