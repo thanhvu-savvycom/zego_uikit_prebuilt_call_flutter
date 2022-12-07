@@ -65,10 +65,10 @@ class ZegoCallingMachine {
       debugPrint("page had pushed");
       return;
     }
-    if (ZegoInvitationPageManager.instance.invitationData.inviter == null) {
-      debugPrint("inviter is null");
-      return;
-    }
+    // if (ZegoInvitationPageManager.instance.invitationData.inviter == null) {
+    //   debugPrint("inviter is null");
+    //   return;
+    // }
 
     Navigator.push(
       context,
