@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 // Package imports:
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
+import 'package:vibration/vibration.dart';
 
 class ZegoRingtone {
   bool isRingTimerRunning = false;
@@ -61,8 +61,8 @@ class ZegoRingtone {
 
     audioPlayer.setReleaseMode(ReleaseMode.loop);
     await audioPlayer.play(AssetSource(sourcePath));
-    if (isVibrate) {
-      Vibrate.vibrate();
+    if (isVibrate && await Vibration.hasVibrator() != true) {
+      Vibration.vibrate();
     }
 
     Timer.periodic(const Duration(seconds: 1), (Timer timer) async {
@@ -73,9 +73,10 @@ class ZegoRingtone {
         audioPlayer.stop();
 
         timer.cancel();
+        Vibration.cancel();
       } else {
-        if (isVibrate) {
-          Vibrate.vibrate();
+        if (isVibrate && await Vibration.hasVibrator() != true) {
+          Vibration.vibrate();
         }
       }
     });
@@ -87,5 +88,7 @@ class ZegoRingtone {
     isRingTimerRunning = false;
 
     audioPlayer.stop();
+
+    Vibration.cancel();
   }
 }
