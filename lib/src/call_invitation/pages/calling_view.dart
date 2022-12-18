@@ -58,11 +58,9 @@ class ZegoCallingInviterView extends StatelessWidget {
         // isVideo ? const ZegoInviterCallingVideoTopToolBar() : Container(),
         // isVideo ? SizedBox(height: 80.h) : SizedBox(height: 120.h),
         SizedBox(height: 150.r),
-        ZegoRippleAvatar(
-          minRadius: 120 / 2.0,
-          radiusIncrement: 0.12,
-          color: Color(0xFF5975A8),
-          soundLevelStream: ZegoUIKit().getSoundLevelStream(firstInvitee.id),
+        SizedBox(
+          height: 120.r,
+          width: 120.r,
           child:
               avatarBuilder?.call(context, Size(120.r, 120.r), firstInvitee, {}) ?? circleAvatar(firstInvitee.name),
         ),
@@ -108,11 +106,9 @@ class ZegoCallingInviteeView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: 150.r),
-        ZegoRippleAvatar(
-          minRadius: 120 / 2.0,
-          radiusIncrement: 0.12,
-          color: Color(0xFF5975A8),
-          soundLevelStream: ZegoUIKit().getSoundLevelStream(inviter.id),
+        SizedBox(
+          height: 120.r,
+          width: 120.r,
           child: avatarBuilder?.call(context, Size(120.r, 120.r), inviter, {}) ?? circleAvatar(inviter.name),
         ),
         SizedBox(height: 10.r),

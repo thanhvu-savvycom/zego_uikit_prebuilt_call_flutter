@@ -5,6 +5,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:zego_uikit/zego_uikit.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 /// Note that the userID needs to be globally unique,
@@ -76,8 +77,8 @@ class CallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ZegoUIKitPrebuiltCall(
-        appID: /*input your AppID*/,
-        appSign: /*input your AppSign*/,
+        appID: 1736432217,
+        appSign: "988e9010fd2c2af886782bd66d0a18783de020280b529531071fb9af2c67d852",
         userID: localUserID,
         userName: "user_$localUserID",
         callID: callID,

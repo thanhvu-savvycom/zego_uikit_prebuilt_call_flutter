@@ -19,6 +19,7 @@ dependencies:
   zego_uikit:
     git:
       url: https://github.com/thanhvu-savvycom/zego_uikit.git
+      ref: dev
 
 dev_dependencies:
   flutter_test:

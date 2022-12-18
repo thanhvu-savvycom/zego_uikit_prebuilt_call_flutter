@@ -50,29 +50,7 @@ class ZegoAudioVideoForeground extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            // Positioned(
-            //   bottom: 0,
-            //   right: 0,
-            //   child: Container(
-            //     padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
-            //     decoration: BoxDecoration(
-            //       color: Colors.black.withOpacity(0.2),
-            //       borderRadius: const BorderRadius.all(Radius.circular(4)),
-            //     ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.end,
-            //       children: [
-            //         userName(
-            //           context,
-            //           constraints.maxWidth * 0.8,
-            //         ),
-            //         microphoneStateIcon(),
-            //         cameraStateIcon(),
-            //       ],
-            //     ),
-            //   ),
-            // )
+            )
           ],
         ),
       );

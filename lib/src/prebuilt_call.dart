@@ -14,6 +14,7 @@ import 'package:http/http.dart' as http;
 import 'package:zego_uikit/zego_uikit.dart';
 
 // Project imports:
+import 'components/audio_video_view_foreground.dart';
 import 'components/components.dart';
 import 'prebuilt_call_config.dart';
 
@@ -417,14 +418,14 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
         widget.config.audioVideoViewConfig.backgroundBuilder
                 ?.call(context, size, user, extraInfo) ??
             Container(color: Colors.transparent),
-        ZegoAudioVideoBackground(
-          size: size,
-          user: user,
-          showAvatar: widget.config.audioVideoViewConfig.showAvatarInAudioMode,
-          showSoundLevel:
-              widget.config.audioVideoViewConfig.showSoundWavesInAudioMode,
-          avatarBuilder: widget.config.avatarBuilder,
-        ),
+        // ZegoAudioVideoBackground(
+        //   size: size,
+        //   user: user,
+        //   showAvatar: widget.config.audioVideoViewConfig.showAvatarInAudioMode,
+        //   showSoundLevel:
+        //       widget.config.audioVideoViewConfig.showSoundWavesInAudioMode,
+        //   avatarBuilder: widget.config.avatarBuilder,
+        // ),
       ],
     );
   }
