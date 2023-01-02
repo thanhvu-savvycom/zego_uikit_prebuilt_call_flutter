@@ -27,6 +27,7 @@ class ZegoAudioVideoForeground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isForeground = 1.sw / size.width > 1;
     if (user == null) {
       return Container(color: Colors.transparent);
     }
@@ -37,11 +38,12 @@ class ZegoAudioVideoForeground extends StatelessWidget {
         child: Stack(
           children: [
             Visibility(
-              visible: isInviter,
+              visible: !isInviter,
               child: Positioned(
-                top: 40.h,
-                left: 0,
-                right: 0,
+                top: isForeground ? null : 40.h,
+                left: isForeground ? null : 0,
+                right: isForeground ? null : 0,
+                bottom: isForeground ? 0 : null,
                 child: Container(
                   alignment: Alignment.center,
                   child: userName(
@@ -58,6 +60,7 @@ class ZegoAudioVideoForeground extends StatelessWidget {
   }
 
   Widget userName(BuildContext context, double maxWidth) {
+    bool isForeground = 1.sw / size.width > 1;
     return showUserNameOnView
         ? ConstrainedBox(
             constraints: BoxConstraints(
@@ -68,9 +71,10 @@ class ZegoAudioVideoForeground extends StatelessWidget {
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: 18.0.r,
+                fontSize: isForeground ? 14.sp : 18.sp,
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: isForeground ? FontWeight.w600 : FontWeight.bold,
+                height: isForeground ? 20 / 14 : 24 / 18,
                 decoration: TextDecoration.none,
               ),
             ),

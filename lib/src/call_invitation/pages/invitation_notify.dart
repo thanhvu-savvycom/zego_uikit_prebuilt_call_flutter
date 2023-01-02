@@ -45,7 +45,7 @@ class ZegoCallInvitationDialogState extends State<ZegoCallInvitationDialog> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             widget.avatarBuilder?.call(context, Size(45.r, 45.r), widget.invitationData.inviter, {}) ??
-                circleName(widget.invitationData.inviter?.name ?? ""),
+                circleName(name: widget.invitationData.inviter?.name ?? ""),
             SizedBox(width: 16.w),
             Expanded(
               child: Column(
@@ -132,14 +132,26 @@ class ZegoCallInvitationDialogState extends State<ZegoCallInvitationDialog> {
     );
   }
 
-  Widget circleName(String name) {
+  Widget circleName({String? avatar, String? name}) {
+    double size = 45.w;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(size/2),
+      child: Image.network(
+        avatar ?? "",
+        height: size,
+        width: size,
+        errorBuilder: (_, __, ___) {
+          return PrebuiltCallImage.asset(InvitationStyleIconUrls.logoCarDoctor);
+        },
+      ),
+    );
     return Container(
       width: 45.r,
       height: 45.r,
       decoration: const BoxDecoration(color: Color(0xffDBDDE3), shape: BoxShape.circle),
       child: Center(
         child: Text(
-          name.isNotEmpty ? name.characters.first : "",
+          name?.isNotEmpty == true ? name?.characters.first ?? "" : "",
           style: TextStyle(
             fontSize: 28.r,
             color: const Color(0xff222222),
@@ -171,9 +183,9 @@ class ZegoCallInvitationDialogState extends State<ZegoCallInvitationDialog> {
   String invitationTypeString(ZegoInvitationType invitationType, List<ZegoUIKitUser> invitees) {
     switch (invitationType) {
       case ZegoInvitationType.voiceCall:
-        return invitees.length > 1 ? "Group voice call" : "Voice call";
+        return invitees.length > 1 ? "Cuộc gọi nhóm" : "Cuộc gọi đến";
       case ZegoInvitationType.videoCall:
-        return invitees.length > 1 ? "Group video call" : "Video call";
+        return invitees.length > 1 ? "Cuộc gọi Video nhóm" : "Cuộc gọi Video đến";
     }
   }
 }

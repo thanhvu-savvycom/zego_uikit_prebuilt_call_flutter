@@ -1,6 +1,7 @@
 export '../../components/assets.dart';
 
 class InvitationStyleIconUrls {
+  static const String logoCarDoctor = 'assets/icons/ic_car_doctor.png';
   static const String inviteVoice = 'assets/invitation/icons/invite_voice.png';
   static const String inviteVideo = 'assets/invitation/icons/invite_video.png';
   static const String inviteReject =

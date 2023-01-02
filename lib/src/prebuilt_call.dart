@@ -260,6 +260,13 @@ class _ZegoUIKitPrebuiltCallState extends State<ZegoUIKitPrebuiltCall>
         layout: widget.config.layout!,
         backgroundBuilder: audioVideoViewBackground,
         foregroundBuilder: audioVideoViewForeground,
+        avatarConfig: ZegoAvatarConfig(
+          showInAudioMode:
+          widget.config.audioVideoViewConfig.showAvatarInAudioMode,
+          showSoundWavesInAudioMode:
+          widget.config.audioVideoViewConfig.showSoundWavesInAudioMode,
+          builder: widget.config.avatarBuilder,
+        ),
         sortAudioVideo: (List<ZegoUIKitUser> users) {
           if (widget.config.layout is ZegoLayoutPictureInPictureConfig) {
             if (users.length > 1) {

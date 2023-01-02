@@ -62,7 +62,7 @@ class ZegoCallingInviterView extends StatelessWidget {
           height: 120.r,
           width: 120.r,
           child:
-              avatarBuilder?.call(context, Size(120.r, 120.r), firstInvitee, {}) ?? circleAvatar(firstInvitee.name),
+              avatarBuilder?.call(context, Size(120.r, 120.r), firstInvitee, {}) ?? circleAvatar(name: firstInvitee.name),
         ),
         SizedBox(height: 10.r),
         centralName(firstInvitee.name),
@@ -109,7 +109,7 @@ class ZegoCallingInviteeView extends StatelessWidget {
         SizedBox(
           height: 120.r,
           width: 120.r,
-          child: avatarBuilder?.call(context, Size(120.r, 120.r), inviter, {}) ?? circleAvatar(inviter.name),
+          child: avatarBuilder?.call(context, Size(120.r, 120.r), inviter, {}) ?? circleAvatar(name: inviter.name),
         ),
         SizedBox(height: 10.r),
         centralName(inviter.name),
@@ -168,7 +168,19 @@ Widget callingText(ZegoInvitationType invitationType, bool isInvitee) {
   );
 }
 
-Widget circleAvatar(String name) {
+Widget circleAvatar({String? avatar, String? name}) {
+  double size = 45.w;
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(size/2),
+    child: Image.network(
+      avatar ?? "",
+      height: size,
+      width: size,
+      errorBuilder: (_, __, ___) {
+        return PrebuiltCallImage.asset(InvitationStyleIconUrls.logoCarDoctor);
+      },
+    ),
+  );
   return Container(
     decoration: const BoxDecoration(
       color: Color(0xffDBDDE3),
@@ -176,7 +188,7 @@ Widget circleAvatar(String name) {
     ),
     child: Center(
       child: Text(
-        name.isNotEmpty ? name.characters.first : "",
+        name?.isNotEmpty == true ? name?.characters.first ?? "" : "",
         style: TextStyle(
           fontSize: 96.0.r,
           color: const Color(0xff222222),

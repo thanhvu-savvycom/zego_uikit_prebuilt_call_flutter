@@ -11,11 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.4
-  flutter_screenutil: ^5.5.3+2
+  http: ^0.13.5
+  flutter_screenutil: ^5.6.0
   vibration: ^1.7.6
-  audioplayers: ^1.0.1
-  statemachine: ^3.2.0
+  audioplayers: ^1.2.0
+  statemachine: ^3.3.0
   zego_uikit:
     git:
       url: https://github.com/thanhvu-savvycom/zego_uikit.git
