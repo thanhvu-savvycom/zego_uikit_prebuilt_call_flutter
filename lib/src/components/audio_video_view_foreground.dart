@@ -37,14 +37,14 @@ class ZegoAudioVideoForeground extends StatelessWidget {
         alignment: Alignment.center,
         child: Stack(
           children: [
-            Visibility(
-              visible: !isInviter,
-              child: Positioned(
+            Positioned(
                 top: isForeground ? null : 40.h,
                 left: isForeground ? null : 0,
                 right: isForeground ? null : 0,
                 bottom: isForeground ? 0 : null,
-                child: Container(
+                child: Visibility(
+                  visible: !isInviter,
+                  child: Container(
                   alignment: Alignment.center,
                   child: userName(
                     context,
